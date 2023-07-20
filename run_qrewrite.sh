@@ -1,7 +1,7 @@
 DATASET=$1
 OUTPUT_DIR=$2
 
-python -m torch.distributed.launch --nproc_per_node=1 --master_port=$3 run_qrewrite.py \
+python3 -m torch.distributed.launch --nproc_per_node=1 --master_port=$3 run_qrewrite.py \
 --dataset_name $DATASET \
 --output_dir $OUTPUT_DIR \
 --num_train_epochs 10 \

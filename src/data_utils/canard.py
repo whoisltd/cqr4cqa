@@ -30,9 +30,9 @@ def load_canard_data(data_dir='data/canard/', output_dir='data/canard/', tokeniz
     data = {}
     split_name_map = {'train': 'train', 'dev': 'validation', 'test': 'test'}
     for split in ['train', 'dev', 'test']:
-        cache_file_path = output_dir + split_name_map[split] + '-cache.txt'
+        cache_file_path = output_dir +"/" + split_name_map[split] + '-cache.txt'
 
-        data_file_path = data_dir + split + '.json'
+        data_file_path = data_dir + "/"+ split + '.json'
         if not os.path.exists(cache_file_path) or overwrite_cache:
             preprocess(data_file_path, split_name_map[split], output_dir, tokenizer)
 
