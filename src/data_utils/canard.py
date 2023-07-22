@@ -8,7 +8,7 @@ def preprocess(data_file_path, split, output_dir, tokenizer):
     with open(data_file_path) as f:
         samples = json.load(f)
 
-    with open(os.path.join(output_dir,'{}-cache.txt').format(split), 'w') as srch:
+    with open(os.path.join(output_dir,'{}-cache.txt').format(split), 'w', encoding='utf-8') as srch:
         for sample in samples:
             src = sep_token.join(sample['History']+[sample['Question']])
             tgt = sample['Rewrite']
@@ -36,7 +36,7 @@ def load_canard_data(data_dir='data/canard/', output_dir='data/canard/', tokeniz
         if not os.path.exists(cache_file_path) or overwrite_cache:
             preprocess(data_file_path, split_name_map[split], output_dir, tokenizer)
 
-        with open(cache_file_path, "r") as f:
+        with open(cache_file_path, "r", encoding='utf-8') as f:
             lines = f.readlines()
         data[split_name_map[split]] = lines
     return data
