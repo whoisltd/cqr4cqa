@@ -1,7 +1,7 @@
 DATASET=$1
 OUTPUT_DIR=$2
 
-python3 -m torch.distributed.launch --nproc_per_node=1 --master_port=$3 run_qrewrite.py \
+torchrun --nproc_per_node=1 --master_port=$3 run_qrewrite.py \
 --dataset_name $DATASET \
 --output_dir $OUTPUT_DIR \
 --num_train_epochs 10 \
@@ -10,8 +10,8 @@ python3 -m torch.distributed.launch --nproc_per_node=1 --master_port=$3 run_qrew
 --learning_rate 3e-5 \
 --adam_epsilon 1e-06 \
 --gradient_accumulation_steps 16 \
---do_train \
---do_eval \
+--do_train true \
+--do_eval true \
 --per_device_train_batch_size 4 \
 --per_device_eval_batch_size 4 \
 --overwrite_output_dir \
